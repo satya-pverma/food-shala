@@ -9,7 +9,11 @@ function PlaceOrderScreen(props) {
   const orderCreate = useSelector(state => state.orderCreate);
   const { loading, success, error, order } = orderCreate;
 
-  const { cartItems, shipping, payment } = cart;
+
+  const productList = useSelector(state => state.productList);
+  const { products } = productList;
+
+  const { cartItems, shipping, payment, } = cart;
   if (!shipping.address) {
     props.history.push("/shipping");
   } else if (!payment.paymentMethod) {
@@ -21,12 +25,12 @@ function PlaceOrderScreen(props) {
   const totalPrice = itemsPrice + shippingPrice + taxPrice;
 
   const dispatch = useDispatch();
-
+  console.log(cartItems[0].producedby)
   const placeOrderHandler = () => {
     // create an order
     dispatch(createOrder({
       orderItems: cartItems, shipping, payment, itemsPrice, shippingPrice,
-      taxPrice, totalPrice
+      taxPrice, totalPrice, producedby: cartItems[0].producedby
     }));
   }
   useEffect(() => {

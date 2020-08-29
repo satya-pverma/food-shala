@@ -38,6 +38,7 @@ router.put("/:id", isAuth, isAdmin, async (req, res) => {
     product.image = req.body.image;
     product.description = req.body.description;
     product.restaurent = req.body.restaurent
+
     const updatedProduct = await product.save();
     if (updatedProduct) {
       return res.status(200).send({ message: 'Product Updated', data: updatedProduct });
@@ -64,7 +65,8 @@ router.post("/", isAuth, isAdmin, async (req, res) => {
     price: req.body.price,
     image: req.body.image,
     description: req.body.description,
-    restaurent: req.body.restaurent
+    restaurent: req.body.restaurent,
+
 
   });
   const newProduct = await product.save();

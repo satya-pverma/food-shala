@@ -159,16 +159,29 @@ function ProductsScreen(props) {
         </thead>
         <tbody>
           {products.map(product => (<tr key={product._id}>
-            <td>{product._id}</td>
-            <td>{product.name}</td>
-            <td>{product.price}</td>
 
-            <td>
-              <button className="button" onClick={() => openModal(product)} >Edit</button>
-              {' '}
-              <button className="button" onClick={() => deleteHandler(product)} >Delete</button>
-            </td>
+            {
+              product.restaurent == restInfo.name ?
+                <>
+                  <td>{product._id}</td>
+                  <td>{product.name}</td>
+                  <td>{product.price}</td>
+
+
+
+                  <td>
+                    <button className="button" onClick={() => openModal(product)} >Edit</button>
+                    {' '}
+                    <button className="button" onClick={() => deleteHandler(product)} >Delete</button>
+                  </td>
+                </>
+                :
+                <div></div>
+            }
+
+
           </tr>))}
+
         </tbody>
       </table>
 

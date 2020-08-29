@@ -36,6 +36,7 @@ router.post("/", isAuth, async (req, res) => {
   const newOrder = new Order({
     orderItems: req.body.orderItems,
     user: req.user._id,
+    producedby: req.body.producedby,
     shipping: req.body.shipping,
     payment: req.body.payment,
     itemsPrice: req.body.itemsPrice,

@@ -1,0 +1,59 @@
+import React, { useState, useEffect } from 'react';
+
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { listProducts } from '../actions/productActions';
+
+
+function HomeScreen(props) {
+
+  const productList = useSelector(state => state.productList);
+  const { products, loading, error } = productList;
+  const dispatch = useDispatch();
+  const restaurentRegister = useSelector(state => state.restaurentRegister);
+  const { restInfo } = restaurentRegister;
+
+
+
+
+  useEffect(() => {
+    dispatch(listProducts())
+
+
+    return () => {
+
+    };
+
+  }, [])
+
+
+  return (
+    loading ? <div>loading...</div> :
+      error ? <div>{error}</div> :
+        <ul className="products">
+          {
+            products.map(product =>
+              <li key={product._id}>
+                <div className="product" >
+                  <Link to={'/product/' + product._id}>
+
+                    <img style={{ height: "320px", width: "320px" }} className="product-image" src={product.image} alt="pants" />
+                  </Link>
+                  <div className="product-name" style={{ textAlign: 'center' }}>
+                    <Link to={'/product/' + product._id}>{product.name}</Link>
+                  </div>
+                  <div style={{ fontSize: "20px", color: "black" }} className="product-brand" >{product.restaurent}</div>
+                  <div className="product-price">&#x20b9;{product.price}</div>
+                  <div className="product-rating"></div>
+                </div>
+              </li>
+            )
+          }
+
+
+
+        </ul>
+  )
+}
+export default HomeScreen;

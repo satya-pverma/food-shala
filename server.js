@@ -21,7 +21,7 @@ mongoose.connect(mongodbUrl, (
 )).catch(error => console.log(error));
 
 const app = express();
-const PORT = 5050;
+const PORT = process.env.PORT || 5050;
 
 app.use(bodyParser.json());
 app.use("/api/users", userRoute);

@@ -1,6 +1,6 @@
-import express from 'express';
-import Restaurent from '../models/restaurentsModel';
-import { getToken, isAuth } from '../util';
+const express = require('express');
+const Restaurent = require('../models/restaurentsModel');
+const { getToken, isAuth } = require('../util');
 
 const router = express.Router();
 
@@ -47,4 +47,4 @@ router.post('/restregister', async (req, res) => {
     }
 
 })
-export default router
+module.exports = router
